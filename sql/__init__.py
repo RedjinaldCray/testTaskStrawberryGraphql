@@ -1,4 +1,6 @@
 from .user import create_user, username_is_already, email_is_already, check_password, get_user, check_hash_password
+from .movie import get_movies_list, get_movie
+from .favorite import like_movie
 from sqlalchemy.engine import create_engine
 from models.base import DBSession
 from sqlalchemy.orm import sessionmaker

@@ -1,9 +1,8 @@
 import strawberry
-from typing import Any
 
 
 @strawberry.type
-class User:
+class UserNode:
     username: str
     email: str
     first_name: str

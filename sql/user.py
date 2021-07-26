@@ -17,7 +17,7 @@ def create_user(username: str, password: str, email: str, first_name: str) -> Us
     return user
 
 
-def username_is_already(username: str):
+def username_is_already(username: str) -> bool:
     get_user_query = select(User).where(User.username == username)
     user = engine.execute(get_user_query).fetchall()
     print(user, 'USER USERNAME')
@@ -26,7 +26,7 @@ def username_is_already(username: str):
     return False
 
 
-def email_is_already(email: str):
+def email_is_already(email: str) -> bool:
     get_user_query = select(User).where(User.email == email)
     user = engine.execute(get_user_query).fetchall()
     print('USER', user)
@@ -35,7 +35,7 @@ def email_is_already(email: str):
     return False
 
 
-def check_password(password: str, email: str):
+def check_password(password: str, email: str) -> bool:
     if email_is_already(email=email):
         get_user_query = select(User).where(User.email == email)
     elif username_is_already(username=email):
@@ -45,3 +45,17 @@ def check_password(password: str, email: str):
     user = engine.execute(get_user_query).fetchall()[0]
 
     return User.check_password(password=password, hash_password=user.password)
+
+
+def get_user(email: str) -> User:
+    get_user_query = select(User).where(User.email == email)
+    user = engine.execute(get_user_query).fetchall()[0]
+
+    return user
+
+
+def check_hash_password(hash_password: str, email: str) -> bool:
+    user = get_user(email=email)
+    if hash_password == user.password:
+        return True
+    return False

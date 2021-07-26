@@ -17,9 +17,6 @@ class BaseModel(Base):
     created_at = Column(TIMESTAMP, nullable=False, default=datetime.datetime.now())
     updated_at = Column(TIMESTAMP, nullable=False, default=datetime.datetime.now())
 
-    def __repr__(self):
-        return "<{0.__class__.__name__}(id={0.id!r})>".format(self)
-
 
 class DBSession(object):
 

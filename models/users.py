@@ -1,6 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Column, VARCHAR
-from sqlalchemy.orm import relationship
 from .base import BaseModel
 
 
@@ -11,7 +10,6 @@ class User(BaseModel):
     email = Column(VARCHAR(255), nullable=False, unique=True)
     password = Column(VARCHAR(255), nullable=False)
     first_name = Column(VARCHAR(255), nullable=False, default="")
-    # movies = relationship("FavoriteMovie")
 
     def __repr__(self):
         return f'{self.username}'

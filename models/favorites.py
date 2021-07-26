@@ -1,6 +1,5 @@
 from .base import BaseModel
-from sqlalchemy import Column, VARCHAR, Integer, ForeignKey
-from sqlalchemy.orm import relation
+from sqlalchemy import Column, Integer, ForeignKey
 
 
 class Favorite(BaseModel):

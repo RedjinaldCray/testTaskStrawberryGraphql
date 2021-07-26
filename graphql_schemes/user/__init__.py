@@ -1,6 +1,9 @@
+from .user_node import UserNode
+from .registration_node import RegistrationNode
+from .like_movie_node import LikeMovieNode
+from .authentication_node import AuthenticationNode
 from .registration_user_mutation import registration_user
 from .authentication_user_mutation import authentication_user
 from .get_me_query import get_me
 from .like_movie_mutation import like_movie_mutation
-
-from .user_node import UserNode
+from .get_my_favorites_query import get_my_favorite

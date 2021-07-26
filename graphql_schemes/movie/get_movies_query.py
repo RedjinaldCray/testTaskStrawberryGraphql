@@ -1,6 +1,6 @@
 from sql import get_movies_list
 from typing import List
-from .movie_node import MovieNode
+from ..movie.movie_node import MovieNode
 
 
 def get_movies() -> List[MovieNode]:

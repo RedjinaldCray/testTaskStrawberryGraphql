@@ -2,5 +2,5 @@ import strawberry
 
 
 @strawberry.type
-class Token:
+class TokenNode:
     token: str

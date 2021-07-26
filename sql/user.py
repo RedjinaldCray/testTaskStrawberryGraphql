@@ -20,7 +20,6 @@ def create_user(username: str, password: str, email: str, first_name: str) -> Us
 def username_is_already(username: str) -> bool:
     get_user_query = select(User).where(User.username == username)
     user = engine.execute(get_user_query).fetchall()
-    print(user, 'USER USERNAME')
     if user:
         return True
     return False
@@ -29,7 +28,6 @@ def username_is_already(username: str) -> bool:
 def email_is_already(email: str) -> bool:
     get_user_query = select(User).where(User.email == email)
     user = engine.execute(get_user_query).fetchall()
-    print('USER', user)
     if user:
         return True
     return False
@@ -47,15 +45,27 @@ def check_password(password: str, email: str) -> bool:
     return User.check_password(password=password, hash_password=user.password)
 
 
-def get_user(email: str) -> User:
+def get_user(email: str) -> User or None:
     get_user_query = select(User).where(User.email == email)
-    user = engine.execute(get_user_query).fetchall()[0]
+    user = engine.execute(get_user_query).fetchall()
+    if user:
+        return user[0]
 
-    return user
+    return None
+
+
+def get_user_by_username(username: str) -> User or None:
+    get_user_query = select(User).where(User.username == username)
+    user = engine.execute(get_user_query).fetchall()
+    if user:
+        return user[0]
+
+    return None
 
 
 def check_hash_password(hash_password: str, email: str) -> bool:
     user = get_user(email=email)
-    if hash_password == user.password:
-        return True
+    if user is not None:
+        if hash_password == user.password:
+            return True
     return False

@@ -1,10 +1,6 @@
-from .user import create_user, username_is_already, email_is_already, check_password, get_user, check_hash_password
+from .user import (
+    create_user, username_is_already, email_is_already, check_password, get_user, check_hash_password,
+    get_user_by_username
+)
 from .movie import get_movies_list, get_movie
-from .favorite import like_movie
-from sqlalchemy.engine import create_engine
-from models.base import DBSession
-from sqlalchemy.orm import sessionmaker
-
-engine = create_engine('sqlite:///database.db', echo=True)
-session_factory = sessionmaker(bind=engine)
-db_session = DBSession(session_factory())
+from .favorite import like_movie, get_list_favorite_movies

@@ -12,7 +12,6 @@ db_session = DBSession(session_factory())
 def get_movies_list() -> list:
     get_movie_query = select(Movie)
     movies = engine.execute(get_movie_query).fetchall()
-    print('movies', movies)
 
     return movies
 
